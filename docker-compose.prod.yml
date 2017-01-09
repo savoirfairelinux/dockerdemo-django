@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        - requirements=requirements-main.txt
+    environment:
+      DJANGO_SETTINGS_MODULE: 'demo_project.settings.dev'
+
+  db:
+    ports:
+      - "5432"
+
+  cache:
+    ports:
+      - "6379"

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container" style="width:700px;">
+    <div class="row">
+        <div class="text-center">
+            <img src="https://www.savoirfairelinux.com/newsfl-theme/images/newsfl/logo/logo-sfl-250.png" alt="" />
+            <br>
+            <div class="well well-lg">
+                This page has been viewed <strong>{{ views_counter }}</strong> times!
+            </div>
+        </div>
+
+        <form action="" method="POST">{% csrf_token %}
+            <div class="form-group">
+                {{ form.text|add_class:'form-control input-lg' }}
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                </div>
+            </div>
+        </form>
+
+        <hr />
+
+        <div>
+          {% for note in notes %}
+            <div class="well">
+                <p class="text-muted"><em>{{ note.created }}</em></p>
+                <h4><strong>{{ note.text }}</strong></h4>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

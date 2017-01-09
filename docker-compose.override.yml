@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        - requirements=requirements-dev.txt
+    volumes:
+      - .:/usr/src/app
+    environment:
+      DJANGO_SETTINGS_MODULE: 'demo_project.settings.dev'
+    ports:
+      - "8000:8000"
+
+  db:
+    ports:
+      - "5432:5432"
+
+  cache:
+    ports:
+      - "6379:6379"

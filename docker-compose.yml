@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  web:
+    restart: always
+    expose:
+      - "8000"
+    links:
+      - db:db
+      - cache:cache
+    env_file: .env
+    command: /usr/local/bin/gunicorn demo_project.wsgi:application -w 2 -b :8000
+
+  nginx:
+    restart: always
+    build: ./provisioning/nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+    volumes_from:
+      - web
+    links:
+      - web:web
+
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+  cache:
+    restart: always
+    image: redis:latest
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata: {}
+  redisdata: {}

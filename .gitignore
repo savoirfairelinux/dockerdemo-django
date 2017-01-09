@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Public files
+public/media/*
+!public/media/.gitkeep
+public/static/*
+!public/static/.gitkeep
