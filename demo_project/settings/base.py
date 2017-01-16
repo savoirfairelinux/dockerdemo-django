@@ -132,6 +132,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                'demo_project.context_processors.views_counter',
             ],
             'loaders': [
                 ('django.template.loaders.cached.Loader', (
